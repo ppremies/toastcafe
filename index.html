@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Toast Cafe — Mobile First Landing Page</title>
-<meta name="description" content="Toast Cafe Surry Hills. Café and catering for Sydney offices, meetings and events.">
+<meta name="description" content="Toast Cafe Surry Hills. CafÃ© and catering for Sydney offices, meetings and events.">
 <style>
 :root{
   --red:#C62828;
@@ -357,28 +357,107 @@ h2{
   color:var(--charcoal);
   box-shadow:0 18px 40px rgba(34,34,34,.08);
 }
-.step{
-  display:grid;
-  grid-template-columns:56px 1fr;
-  gap:20px;
-  align-items:center;
-  padding:18px 0;
-  border-bottom:1px solid rgba(34,34,34,.16);
-}
-.step:last-child{border-bottom:0}
-.step b{
-  color:var(--red);
+.form-intro{
+  margin:0 0 18px;
   font-family:var(--ui-font);
-  font-size:16px;
+  font-size:13px;
   font-weight:700;
-  letter-spacing:.02em;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--red);
 }
-.step span{
+.enquiry-form{
+  display:grid;
+  gap:12px;
+}
+.field-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.form-field{
+  display:grid;
+  gap:6px;
+}
+.form-field label{
   font-family:var(--ui-font);
-  font-size:15px;
-  font-weight:600;
-  line-height:1.35;
-  letter-spacing:.01em;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--charcoal);
+}
+.form-field input,
+.form-field select,
+.form-field textarea{
+  width:100%;
+  border:1.5px solid rgba(34,34,34,.14);
+  border-radius:16px;
+  background:#fff;
+  color:var(--charcoal);
+  padding:14px 16px;
+  font:inherit;
+}
+.form-field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus{
+  outline:none;
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(198,40,40,.12);
+}
+.form-actions{
+  display:grid;
+  gap:10px;
+  margin-top:6px;
+}
+.form-note,
+.form-status{
+  margin:0;
+  font-size:14px;
+  line-height:1.45;
+}
+.form-note{color:rgba(34,34,34,.72)}
+.form-status{
+  min-height:20px;
+  color:var(--red);
+}
+.form-status.success{color:#1f6b3b}
+.thank-you-card{
+  display:none;
+  gap:14px;
+  align-content:start;
+  padding:10px 2px 2px;
+}
+.thank-you-card.visible{display:grid}
+.thank-you-card h3{
+  margin:0;
+  font-size:clamp(28px,7vw,42px);
+  line-height:.96;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+}
+.thank-you-card p{
+  margin:0;
+  font-size:17px;
+  line-height:1.55;
+  color:rgba(34,34,34,.78);
+}
+.thank-you-meta{
+  display:grid;
+  gap:8px;
+  padding-top:8px;
+}
+.thank-you-meta span{
+  font-family:var(--ui-font);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--red);
 }
 .gallery{
   display:grid;
@@ -475,6 +554,7 @@ h2{
     gap:34px;
     align-items:start;
   }
+  .form-actions{grid-template-columns:1fr auto;align-items:center}
   .gallery img{height:260px}
   .gallery img:first-child{height:530px}
   .contact-wrap{
@@ -537,7 +617,7 @@ h2{
 
 </head>
 <body>
-<div class="page">
+<div class="page" id="top">
   <nav class="nav">
     <div class="nav-inner">
       <a class="logo" href="#top" aria-label="Toast Cafe & Catering home"><span class="logo-mark">toast</span><span class="logo-sub">Cafe & Catering</span></a>
@@ -546,7 +626,7 @@ h2{
       <a href="#menu">Menu</a>
       <a href="#catering">Catering</a>
       <a href="#contact">Contact</a>
-      <a class="nav-cta" href="#catering">Plan catering →</a>
+      <a class="nav-cta" href="#catering">Plan catering â†’</a>
     </div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
       <span></span>
@@ -567,56 +647,56 @@ h2{
     <div class="hero-media">
       <img src="assets/hero.jpg" alt="Toast Cafe interior in Surry Hills">
       <div class="hero-badge">
-        <a class="badge primary" href="#cafe">Visit the café</a>
+        <a class="badge primary" href="#cafe">Visit the cafÃ©</a>
         <a class="badge secondary" href="#catering">Plan your catering -&gt;</a>
       </div>
     </div>
     <div class="hero-copy">
-      <div class="kicker">Cafe · Coffee · Catering</div>
+      <div class="kicker">Cafe Â· Coffee Â· Catering</div>
       <h1>Good food.<br>Done properly.</h1>
-      <p>Your local Surry Hills café — and fresh, reliable catering for offices, meetings and events across Sydney.</p>
+      <p>Your local Surry Hills cafÃ© â€” and fresh, reliable catering for offices, meetings and events across Sydney.</p>
       <div class="cta-row">
-        <a class="btn red" href="#catering">Plan catering →</a>
-        <a class="btn" href="#cafe">Visit the café</a>
+        <a class="btn red" href="#catering">Plan catering â†’</a>
+        <a class="btn" href="#cafe">Visit the cafÃ©</a>
       </div>
     </div>
   </header>
 
   <div class="ticker"><div class="track">
-    Surry Hills Café ● Corporate Catering ● Sandwich Platters ● Campos Coffee ● Sydney Events ● Breakfast Boxes ●
-    Surry Hills Café ● Corporate Catering ● Sandwich Platters ● Campos Coffee ● Sydney Events ● Breakfast Boxes ●
+    Surry Hills CafÃ© â— Corporate Catering â— Sandwich Platters â— Campos Coffee â— Sydney Events â— Breakfast Boxes â—
+    Surry Hills CafÃ© â— Corporate Catering â— Sandwich Platters â— Campos Coffee â— Sydney Events â— Breakfast Boxes â—
   </div></div>
 
   <section class="section" id="cafe">
     <div class="kicker">Two ways to Toast</div>
     <h2>Come to us.<br>Or we come to you.</h2>
-    <p class="lead">A warm café for everyday breakfast and lunch, plus catering that feels organised, fresh and easy.</p>
+    <p class="lead">A warm cafÃ© for everyday breakfast and lunch, plus catering that feels organised, fresh and easy.</p>
     <div class="two-cards">
       <a class="route-card" href="#menu">
         <img src="assets/coffee_hand.jpg" alt="Coffee served at Toast Cafe">
         <div class="route-content">
-          <small>01 — Café</small>
+          <small>01 â€” CafÃ©</small>
           <h3>Your local.</h3>
           <p>Drop in for coffee, brunch and a proper feed in Surry Hills.</p>
-          <span class="btn red">See café menu →</span>
+          <span class="btn red">See cafÃ© menu â†’</span>
         </div>
       </a>
       <a class="route-card" href="#catering">
         <img src="assets/food1.jpg" alt="Toast Cafe brunch food">
         <div class="route-content">
-          <small>02 — Catering</small>
+          <small>02 â€” Catering</small>
           <h3>Feed the room.</h3>
           <p>Fresh food for meetings, team lunches and small events.</p>
-          <span class="btn red">Plan catering →</span>
+          <span class="btn red">Plan catering â†’</span>
         </div>
       </a>
     </div>
   </section>
 
   <section class="section dark" id="menu">
-    <div class="kicker">Sample café menu</div>
+    <div class="kicker">Sample cafÃ© menu</div>
     <h2>Good food.<br>Made fresh.</h2>
-    <p class="lead">From café favourites and good coffee to fresh food made for busy Sydney days.</p>
+    <p class="lead">From cafÃ© favourites and good coffee to fresh food made for busy Sydney days.</p>
     <div class="food-scroll">
       <article class="food-card">
         <img src="assets/omelette.jpg" alt="Australian cafe omelette">
@@ -639,14 +719,83 @@ h2{
         <div class="kicker">Toast catering</div>
         <h2>Sandwiches, boxes & office spreads.</h2>
         <p class="lead">For team breakfasts, corporate lunches, meetings and events. Simple to organise, fresh to eat, easy to say yes to.</p>
-        <a class="btn red" href="mailto:info@toastcafe.com.au?subject=Catering enquiry">Start enquiry →</a>
+        <a class="btn red" href="#catering-enquiry">Start enquiry â†’</a>
       </div>
       <div>
-        <div class="catering-box">
-          <div class="step"><b>01</b><span>Tell us the date, place and guest count</span></div>
-          <div class="step"><b>02</b><span>Choose breakfast, lunch, sandwiches or mixed catering</span></div>
-          <div class="step"><b>03</b><span>We prepare it fresh from the café</span></div>
-          <div class="step"><b>04</b><span>Delivered, organised and ready to serve</span></div>
+        <div class="catering-box" id="catering-enquiry">
+          <p class="form-intro">Catering enquiry form</p>
+          <form class="enquiry-form" id="enquiry-form" action="https://formsubmit.co/ajax/info@toastcafe.com.au" method="POST">
+            <input type="hidden" name="_subject" value="New Toast Catering Enquiry">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="enquiry-name">Name</label>
+                <input id="enquiry-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="form-field">
+                <label for="enquiry-email">Email</label>
+                <input id="enquiry-email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="enquiry-company">Company</label>
+                <input id="enquiry-company" name="company" type="text" autocomplete="organization" placeholder="Company or team">
+              </div>
+              <div class="form-field">
+                <label for="enquiry-phone">Phone</label>
+                <input id="enquiry-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="enquiry-guests">Guest count</label>
+                <input id="enquiry-guests" name="guest_count" type="number" min="1" placeholder="e.g. 25" required>
+              </div>
+              <div class="form-field">
+                <label for="enquiry-time">Preferred delivery time</label>
+                <input id="enquiry-time" name="preferred_delivery_time" type="time">
+              </div>
+            </div>
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="enquiry-date">Event date</label>
+                <input id="enquiry-date" name="event_date" type="date" required>
+              </div>
+              <div class="form-field">
+                <label for="enquiry-type">Catering type</label>
+                <select id="enquiry-type" name="catering_type" required>
+                  <option value="">Select one</option>
+                  <option>Breakfast</option>
+                  <option>Lunch</option>
+                  <option>Sandwiches</option>
+                  <option>Mixed catering</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="enquiry-location">Delivery location</label>
+              <input id="enquiry-location" name="delivery_location" type="text" placeholder="Office, suburb or venue" required>
+            </div>
+            <div class="form-field">
+              <label for="enquiry-notes">What do you need?</label>
+              <textarea id="enquiry-notes" name="message" placeholder="Tell us timing, dietary needs and anything else that helps."></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn red" type="submit">Send enquiry -&gt;</button>
+              <p class="form-note">Submissions go to `info@toastcafe.com.au`.</p>
+            </div>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+          </form>
+          <div class="thank-you-card" id="thank-you-card" aria-live="polite">
+            <p class="form-intro">Enquiry received</p>
+            <h3>Thanks.<br>We'll get back to you shortly.</h3>
+            <p>Your catering enquiry has been sent to our inbox. We'll review the details and reply by email as soon as we can.</p>
+            <div class="thank-you-meta">
+              <span>Sent to info@toastcafe.com.au</span>
+              <span>Prefer a direct call? 02 9280 2615</span>
+            </div>
+          </div>
         </div>
         <div class="gallery">
           <img src="assets/food1.jpg" alt="Cafe food that can inspire catering">
@@ -684,7 +833,7 @@ h2{
 
   <footer class="footer">
     <div class="footer-logo">toast</div>
-    <div>Surry Hills café + catering<br>45 Reservoir Street, Surry Hills NSW 2010</div>
+    <div>Surry Hills cafÃ© + catering<br>45 Reservoir Street, Surry Hills NSW 2010</div>
   </footer>
 </div>
 <a class="back-to-top" href="#top" aria-label="Back to top">Top</a>
@@ -693,6 +842,9 @@ const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const backToTop = document.querySelector(".back-to-top");
 const mobileLinks = document.querySelectorAll(".mobile-menu a");
+const enquiryForm = document.querySelector("#enquiry-form");
+const formStatus = document.querySelector("#form-status");
+const thankYouCard = document.querySelector("#thank-you-card");
 
 if (menuToggle && mobileMenu) {
   menuToggle.addEventListener("click", () => {
@@ -714,9 +866,42 @@ window.addEventListener("scroll", () => {
   if (!backToTop) return;
   backToTop.classList.toggle("visible", window.scrollY > 420);
 });
+
+if (enquiryForm && formStatus) {
+  enquiryForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    formStatus.classList.remove("success");
+    formStatus.textContent = "Sending enquiry...";
+
+    try {
+      const response = await fetch(enquiryForm.action, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
+        body: new FormData(enquiryForm)
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      enquiryForm.reset();
+      formStatus.classList.add("success");
+      formStatus.textContent = "";
+      enquiryForm.style.display = "none";
+      if (thankYouCard) {
+        thankYouCard.classList.add("visible");
+      }
+    } catch (error) {
+      formStatus.textContent = "Couldn't send just now. Please email info@toastcafe.com.au instead.";
+    }
+  });
+}
 </script>
 </body>
 </html>
+
 
 
 

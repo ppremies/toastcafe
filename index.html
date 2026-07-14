@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toast Cafe — Mobile First Landing Page</title>
+<meta name="description" content="Toast Cafe Surry Hills. Café and catering for Sydney offices, meetings and events.">
+<style>
+:root{
+  --red:#C62828;
+  --cream:#FFF3E6;
+  --charcoal:#222222;
+  --beige:#E9D9C2;
+  --paper:#fffaf3;
+  --display-font:"Bodoni MT","Didot","Times New Roman",serif;
+  --body-font:"Aptos","Segoe UI",Arial,sans-serif;
+  --ui-font:"Aptos","Helvetica Neue","Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--charcoal);
+  font-family:var(--body-font);
+}
+body.menu-open{overflow:hidden}
+img{width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.page{overflow:hidden}
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,243,230,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(34,34,34,.12);
+}
+.nav-inner{
+  height:82px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  min-height:82px;
+  flex:0 0 auto;
+  color:var(--red);
+  font-family:var(--display-font);
+  font-size:52px;
+  font-weight:950;
+  letter-spacing:-.08em;
+  line-height:.9;
+  text-transform:lowercase;
+}
+.logo-mark{display:block}
+.logo-sub{
+  display:block;
+  align-self:center;
+  font-family:"Helvetica Neue","Aptos","Segoe UI",Arial,sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.04em;
+  line-height:1;
+  text-transform:none;
+  color:var(--charcoal);
+  margin-top:8px;
+  margin-bottom:0;
+}
+.menu-pill{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:10px 14px;
+  border:1.5px solid var(--charcoal);
+  border-radius:999px;
+  font-size:12px;
+  font-family:var(--ui-font);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.menu-toggle{
+  min-width:52px;
+  min-height:52px;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  border:1.5px solid var(--charcoal);
+  border-radius:999px;
+  background:transparent;
+  color:var(--charcoal);
+  cursor:pointer;
+}
+.menu-toggle span{
+  width:18px;
+  height:1.5px;
+  background:currentColor;
+  border-radius:999px;
+}
+.mobile-menu{
+  position:fixed;
+  inset:90px 18px auto 18px;
+  z-index:60;
+  display:grid;
+  gap:10px;
+  padding:18px;
+  background:rgba(255,250,243,.98);
+  border:1px solid rgba(34,34,34,.12);
+  border-radius:24px;
+  box-shadow:0 24px 60px rgba(34,34,34,.12);
+  transform:translateY(-12px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;
+}
+.mobile-menu.is-open{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.mobile-menu a{
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1.5px solid rgba(34,34,34,.12);
+  border-radius:999px;
+  background:var(--paper);
+  font-family:var(--ui-font);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.mobile-menu .mobile-nav-cta{
+  background:var(--red);
+  border-color:var(--red);
+  color:white;
+}
+.back-to-top{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:45;
+  min-width:52px;
+  min-height:52px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 16px;
+  border:1.5px solid var(--charcoal);
+  border-radius:999px;
+  background:rgba(255,250,243,.96);
+  color:var(--charcoal);
+  font-family:var(--ui-font);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  box-shadow:0 18px 40px rgba(34,34,34,.12);
+  opacity:0;
+  transform:translateY(10px);
+  pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;
+}
+.back-to-top.visible{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.dot{width:8px;height:8px;background:var(--red);border-radius:50%}
+
+.hero{
+  min-height:calc(100svh - 68px);
+  display:flex;
+  flex-direction:column;
+}
+.hero-media{
+  position:relative;
+  height:48svh;
+  min-height:360px;
+  overflow:hidden;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+}
+.hero-media img{height:100%;object-fit:cover}
+.hero-media:after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.58));
+}
+.hero-badge{
+  position:absolute;
+  left:18px;bottom:18px;z-index:2;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.badge{
+  min-height:56px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  padding:0 24px;
+  font-size:12px;
+  font-family:var(--ui-font);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  border:1.5px solid var(--charcoal);
+}
+.badge.primary{
+  background:var(--red);
+  border-color:var(--red);
+  color:white;
+}
+.badge.secondary{
+  background:rgba(255,243,230,.94);
+  color:var(--charcoal);
+}
+.hero-copy{
+  padding:28px 18px 36px;
+}
+.kicker{
+  color:var(--red);
+  font-size:12px;
+  font-family:var(--ui-font);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:14px;
+}
+h1{
+  margin:0;
+  font-size:clamp(56px,18vw,88px);
+  line-height:.9;
+  letter-spacing:-.05em;
+  text-transform:uppercase;
+  font-weight:950;
+}
+.hero-copy p{
+  margin:22px 0 24px;
+  font-size:18px;
+  line-height:1.42;
+}
+.cta-row{display:grid;grid-template-columns:1fr;gap:10px}
+.btn{
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  padding:14px 18px;
+  font-size:13px;
+  font-family:var(--ui-font);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  border:1.5px solid var(--charcoal);
+}
+.btn.red{background:var(--red);border-color:var(--red);color:white}
+.ticker{
+  background:var(--red);
+  color:var(--cream);
+  overflow:hidden;
+  white-space:nowrap;
+  padding:13px 0;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.track{display:inline-block;animation:move 22s linear infinite}
+@keyframes move{to{transform:translateX(-50%)}}
+
+.section{padding:54px 18px}
+.section.dark{background:var(--charcoal);color:var(--cream)}
+.section.beige{background:var(--beige)}
+.section.red{background:var(--red);color:var(--cream)}
+h2{
+  margin:0 0 18px;
+  font-size:clamp(42px,13vw,70px);
+  line-height:.92;
+  letter-spacing:-.045em;
+  text-transform:uppercase;
+  font-weight:950;
+}
+.lead{
+  font-size:20px;
+  line-height:1.35;
+  margin:0 0 26px;
+}
+.two-cards{display:grid;gap:14px}
+.route-card{
+  min-height:420px;
+  position:relative;
+  overflow:hidden;
+  border-radius:26px;
+  background:#000;
+  color:white;
+}
+.route-card img{height:100%;position:absolute;inset:0;object-fit:cover}
+.route-card:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.06),rgba(0,0,0,.76));
+}
+.route-content{
+  position:absolute;z-index:2;left:18px;right:18px;bottom:20px;
+}
+.route-content small{
+  font-family:var(--ui-font);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--cream)
+}
+.route-content h3{
+  margin:10px 0;
+  font-size:46px;
+  line-height:.86;
+  letter-spacing:-.06em;
+  text-transform:uppercase;
+}
+.route-content p{font-size:17px;line-height:1.35;margin:0 0 16px}
+
+.food-scroll{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:4px 18px 22px;
+  margin:0 -18px;
+}
+.food-card{
+  scroll-snap-align:start;
+  flex:0 0 82%;
+  background:var(--paper);
+  color:var(--charcoal);
+  border-radius:24px;
+  overflow:hidden;
+}
+.food-card img{height:330px;object-fit:cover}
+.food-card div{padding:16px}
+.food-card h3{margin:0 0 8px;font-size:26px;letter-spacing:-.04em}
+.food-card p{margin:0;line-height:1.4;color:rgba(34,34,34,.72)}
+
+.catering-box{
+  background:var(--paper);
+  border-radius:28px;
+  padding:20px;
+  color:var(--charcoal);
+  box-shadow:0 18px 40px rgba(34,34,34,.08);
+}
+.step{
+  display:grid;
+  grid-template-columns:56px 1fr;
+  gap:20px;
+  align-items:center;
+  padding:18px 0;
+  border-bottom:1px solid rgba(34,34,34,.16);
+}
+.step:last-child{border-bottom:0}
+.step b{
+  color:var(--red);
+  font-family:var(--ui-font);
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.step span{
+  font-family:var(--ui-font);
+  font-size:15px;
+  font-weight:600;
+  line-height:1.35;
+  letter-spacing:.01em;
+}
+.gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:18px;
+}
+.gallery img{
+  height:190px;
+  object-fit:cover;
+  border-radius:18px;
+}
+.gallery img:first-child{
+  grid-row:span 2;
+  height:390px;
+}
+.quote{
+  font-size:clamp(34px,11vw,58px);
+  line-height:1;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+  font-weight:950;
+  margin:0;
+}
+.contact-card{
+  background:var(--charcoal);
+  color:var(--cream);
+  border-radius:30px;
+  padding:24px;
+}
+.contact-card p{font-size:18px;line-height:1.55;margin:0}
+.label{
+  display:block;
+  color:var(--red);
+  font-size:11px;
+  font-family:var(--ui-font);
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin:20px 0 7px;
+}
+.footer{
+  padding:34px 18px 46px;
+  background:var(--charcoal);
+  color:var(--cream);
+}
+.footer-logo{
+  color:var(--red);
+  font-size:72px;
+  line-height:.72;
+  font-weight:950;
+  letter-spacing:-.08em;
+  margin-bottom:22px;
+}
+
+/* tablet / desktop enhancement, still mobile-first */
+@media(min-width:760px){
+  .nav-inner{padding:0 34px}
+  .hero{
+    min-height:760px;
+    display:grid;
+    grid-template-columns:.94fr 1.06fr;
+  }
+  .hero-media{
+    order:2;
+    height:auto;
+    min-height:760px;
+    border-radius:0 0 0 44px;
+  }
+  .hero-copy{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:70px 44px;
+  }
+  h1{font-size:clamp(86px,9vw,150px)}
+  .hero-copy p{font-size:23px;max-width:620px}
+  .cta-row{display:flex}
+  .section{padding:96px 44px}
+  .two-cards{grid-template-columns:1fr 1fr}
+  .route-card{min-height:640px}
+  .food-scroll{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    overflow:visible;
+    padding:0;
+    margin:0;
+  }
+  .food-card{flex:auto}
+  .food-card img{height:430px}
+  .cat-layout{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:34px;
+    align-items:start;
+  }
+  .gallery img{height:260px}
+  .gallery img:first-child{height:530px}
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1fr .8fr;
+    gap:30px;
+    align-items:end;
+  }
+}
+</style>
+
+<style>
+.desktop-links{display:none}
+.footer-logo{
+  color:var(--red);
+  font-size:72px;
+  line-height:.72;
+  font-weight:950;
+  letter-spacing:-.08em;
+  margin-bottom:24px;
+  font-family:var(--display-font);
+}
+@media(min-width:980px){
+  .nav-inner{
+    height:104px;
+    max-width:1440px;
+    margin:auto;
+    padding:0 42px;
+  }
+  .logo{min-height:104px;font-size:64px}
+  .logo-sub{font-size:14px}
+  .menu-pill,.menu-toggle,.mobile-menu{display:none}
+  .desktop-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    font-size:12px;
+    font-family:var(--ui-font);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .desktop-links .nav-cta{
+    background:var(--red);
+    color:white;
+    padding:14px 18px;
+    border-radius:999px;
+  }
+  .hero{min-height:calc(100vh - 86px)}
+  .hero-media{min-height:calc(100vh - 86px)}
+  .footer{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    padding:52px 44px;
+  }
+  .footer-logo{font-size:96px;margin:0}
+}
+</style>
+
+</head>
+<body>
+<div class="page">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="Toast Cafe & Catering home"><span class="logo-mark">toast</span><span class="logo-sub">Cafe & Catering</span></a>
+      <div class="desktop-links">
+      <a href="#cafe">Cafe</a>
+      <a href="#menu">Menu</a>
+      <a href="#catering">Catering</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#catering">Plan catering →</a>
+    </div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#cafe">Cafe</a>
+      <a href="#menu">Menu</a>
+      <a href="#catering">Catering</a>
+      <a href="#contact">Contact</a>
+      <a class="mobile-nav-cta" href="#catering">Plan Catering</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-media">
+      <img src="assets/hero.jpg" alt="Toast Cafe interior in Surry Hills">
+      <div class="hero-badge">
+        <a class="badge primary" href="#cafe">Visit the café</a>
+        <a class="badge secondary" href="#catering">Plan your catering -&gt;</a>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <div class="kicker">Cafe · Coffee · Catering</div>
+      <h1>Good food.<br>Done properly.</h1>
+      <p>Your local Surry Hills café — and fresh, reliable catering for offices, meetings and events across Sydney.</p>
+      <div class="cta-row">
+        <a class="btn red" href="#catering">Plan catering →</a>
+        <a class="btn" href="#cafe">Visit the café</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker"><div class="track">
+    Surry Hills Café ● Corporate Catering ● Sandwich Platters ● Campos Coffee ● Sydney Events ● Breakfast Boxes ●
+    Surry Hills Café ● Corporate Catering ● Sandwich Platters ● Campos Coffee ● Sydney Events ● Breakfast Boxes ●
+  </div></div>
+
+  <section class="section" id="cafe">
+    <div class="kicker">Two ways to Toast</div>
+    <h2>Come to us.<br>Or we come to you.</h2>
+    <p class="lead">A warm café for everyday breakfast and lunch, plus catering that feels organised, fresh and easy.</p>
+    <div class="two-cards">
+      <a class="route-card" href="#menu">
+        <img src="assets/coffee_hand.jpg" alt="Coffee served at Toast Cafe">
+        <div class="route-content">
+          <small>01 — Café</small>
+          <h3>Your local.</h3>
+          <p>Drop in for coffee, brunch and a proper feed in Surry Hills.</p>
+          <span class="btn red">See café menu →</span>
+        </div>
+      </a>
+      <a class="route-card" href="#catering">
+        <img src="assets/food1.jpg" alt="Toast Cafe brunch food">
+        <div class="route-content">
+          <small>02 — Catering</small>
+          <h3>Feed the room.</h3>
+          <p>Fresh food for meetings, team lunches and small events.</p>
+          <span class="btn red">Plan catering →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section dark" id="menu">
+    <div class="kicker">Sample café menu</div>
+    <h2>Good food.<br>Made fresh.</h2>
+    <p class="lead">From café favourites and good coffee to fresh food made for busy Sydney days.</p>
+    <div class="food-scroll">
+      <article class="food-card">
+        <img src="assets/omelette.jpg" alt="Australian cafe omelette">
+        <div><h3>Morning Plates</h3><p>Eggs, greens, toast, house sauces and proper brunch favourites.</p></div>
+      </article>
+      <article class="food-card">
+        <img src="assets/coffee_top.jpg" alt="Latte art coffee">
+        <div><h3>Coffee</h3><p>Campos coffee, quick takeaway runs and slow morning sits.</p></div>
+      </article>
+      <article class="food-card">
+        <img src="assets/coffee_wall.jpg" alt="Coffee beans on shelf">
+        <div><h3>Retail Coffee</h3><p>Beans and rotating coffee options for people who know what they like.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section beige" id="catering">
+    <div class="cat-layout">
+      <div>
+        <div class="kicker">Toast catering</div>
+        <h2>Sandwiches, boxes & office spreads.</h2>
+        <p class="lead">For team breakfasts, corporate lunches, meetings and events. Simple to organise, fresh to eat, easy to say yes to.</p>
+        <a class="btn red" href="mailto:info@toastcafe.com.au?subject=Catering enquiry">Start enquiry →</a>
+      </div>
+      <div>
+        <div class="catering-box">
+          <div class="step"><b>01</b><span>Tell us the date, place and guest count</span></div>
+          <div class="step"><b>02</b><span>Choose breakfast, lunch, sandwiches or mixed catering</span></div>
+          <div class="step"><b>03</b><span>We prepare it fresh from the café</span></div>
+          <div class="step"><b>04</b><span>Delivered, organised and ready to serve</span></div>
+        </div>
+        <div class="gallery">
+          <img src="assets/food1.jpg" alt="Cafe food that can inspire catering">
+          <img src="assets/omelette.jpg" alt="Breakfast catering sample">
+          <img src="assets/coffee_top.jpg" alt="Coffee catering sample">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section red">
+    <p class="quote">Good food should be the easiest part of your day.</p>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="contact-wrap">
+      <div>
+        <div class="kicker">Visit / enquire</div>
+        <h2>Find us in<br>Surry Hills.</h2>
+      </div>
+      <div class="contact-card">
+        <p>
+          <span class="label">Contact</span>
+          45 Reservoir Street<br>
+          Surry Hills NSW 2010<br>
+          Sydney, Australia
+          <span class="label">Email</span>
+          <a href="mailto:info@toastcafe.com.au">info@toastcafe.com.au</a>
+          <span class="label">Phone</span>
+          <a href="tel:+61292802615">02 9280 2615</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">toast</div>
+    <div>Surry Hills café + catering<br>45 Reservoir Street, Surry Hills NSW 2010</div>
+  </footer>
+</div>
+<a class="back-to-top" href="#top" aria-label="Back to top">Top</a>
+<script>
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+const backToTop = document.querySelector(".back-to-top");
+const mobileLinks = document.querySelectorAll(".mobile-menu a");
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("menu-open", isOpen);
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+    });
+  });
+}
+
+window.addEventListener("scroll", () => {
+  if (!backToTop) return;
+  backToTop.classList.toggle("visible", window.scrollY > 420);
+});
+</script>
+</body>
+</html>
+
+
+

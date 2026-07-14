@@ -285,9 +285,34 @@ h1{
 .section.red{
   background:var(--red);
   color:var(--cream);
+  position:relative;
+  overflow:hidden;
   display:flex;
   align-items:center;
-  min-height:52vh;
+  min-height:58vh;
+}
+.section.red:before{
+  content:"";
+  position:absolute;
+  width:42vw;
+  height:42vw;
+  min-width:240px;
+  min-height:240px;
+  right:-12vw;
+  top:-10vw;
+  border-radius:50%;
+  background:rgba(255,243,230,.08);
+}
+.section.red:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  left:-60px;
+  bottom:-70px;
+  border-radius:28px;
+  transform:rotate(18deg);
+  background:rgba(255,243,230,.06);
 }
 h2{
   margin:0 0 18px;
@@ -481,16 +506,48 @@ h2{
   height:390px;
 }
 .quote{
-  max-width:22ch;
-  font-size:clamp(44px,8vw,96px);
-  line-height:.96;
-  letter-spacing:-.045em;
+  max-width:15ch;
+  font-size:clamp(46px,8.2vw,110px);
+  line-height:.94;
+  letter-spacing:-.05em;
   text-transform:uppercase;
   font-weight:950;
   margin:0;
 }
 .quote-wrap{
-  width:100%;
+  position:relative;
+  z-index:1;
+  width:min(1120px,100%);
+  margin:0 auto;
+  padding:18px 0 18px 26px;
+}
+.quote-wrap:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:6px;
+  height:100%;
+  border-radius:999px;
+  background:rgba(255,243,230,.88);
+}
+.quote-kicker{
+  display:inline-block;
+  margin:0 0 18px;
+  font-family:var(--ui-font);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(255,243,230,.86);
+}
+.quote-kicker:after{
+  content:"";
+  display:block;
+  width:88px;
+  height:2px;
+  margin-top:10px;
+  background:rgba(255,243,230,.82);
 }
 .contact-card{
   background:var(--charcoal);
@@ -565,8 +622,9 @@ h2{
     align-items:start;
   }
   .form-actions{grid-template-columns:1fr auto;align-items:center}
-  .section.red{min-height:48vh}
-  .quote{max-width:18ch}
+  .section.red{min-height:54vh}
+  .quote-wrap{padding-left:34px}
+  .quote{max-width:14ch}
   .gallery img{height:260px}
   .gallery img:first-child{height:530px}
   .contact-wrap{
@@ -820,7 +878,8 @@ h2{
 
   <section class="section red">
     <div class="quote-wrap">
-      <p class="quote">Good food should be the easiest part of your<br>day.</p>
+      <span class="quote-kicker">Toast standard</span>
+      <p class="quote">Good food should be the easiest part of your day.</p>
     </div>
   </section>
 

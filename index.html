@@ -967,16 +967,26 @@ if (enquiryForm && formStatus) {
     formStatus.textContent = "Sending enquiry...";
 
     try {
+      const formPayload = new URLSearchParams(new FormData(enquiryForm));
       const response = await fetch(enquiryForm.action, {
         method: "POST",
         headers: {
-          "Accept": "application/json"
+          "Accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         },
-        body: new FormData(enquiryForm)
+        body: formPayload.toString()
       });
 
-      if (!response.ok) {
-        throw new Error("Submission failed");
+      let result = null;
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        result = null;
+      }
+
+      if (!response.ok || (result && result.success === "false")) {
+        const message = result && (result.message || result.error);
+        throw new Error(message || "Submission failed");
       }
 
       enquiryForm.reset();
@@ -987,7 +997,12 @@ if (enquiryForm && formStatus) {
         thankYouCard.classList.add("visible");
       }
     } catch (error) {
-      formStatus.textContent = "Couldn't send just now. Please email info@toastcafe.com.au instead.";
+      const message = String(error && error.message ? error.message : "");
+      if (message.toLowerCase().includes("activate") || message.toLowerCase().includes("confirm")) {
+        formStatus.textContent = "Please activate FormSubmit from the confirmation email sent to info@toastcafe.com.au first.";
+      } else {
+        formStatus.textContent = "Couldn't send just now. Please email info@toastcafe.com.au instead.";
+      }
     }
   });
 }

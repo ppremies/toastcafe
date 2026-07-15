@@ -813,9 +813,11 @@ h2{
       <div>
         <div class="catering-box" id="catering-enquiry">
           <p class="form-intro">Catering enquiry form</p>
-          <form class="enquiry-form" id="enquiry-form" action="https://formsubmit.co/ajax/info@toastcafe.com.au" method="POST">
-            <input type="hidden" name="_subject" value="New Toast Catering Enquiry">
-            <input type="hidden" name="_captcha" value="false">
+          <form class="enquiry-form" id="enquiry-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="b2087cf8-ef63-41c1-97f9-737c7f804910">
+            <input type="hidden" name="subject" value="New Toast Catering Enquiry">
+            <input type="hidden" name="from_name" value="Toast Cafe Catering Website">
+            <input type="checkbox" name="botcheck" style="display:none">
             <div class="field-grid">
               <div class="form-field">
                 <label for="enquiry-name">Name</label>
@@ -880,7 +882,7 @@ h2{
             <h3>Thanks.<br>We'll get back to you shortly.</h3>
             <p>Your catering enquiry has been sent to our inbox. We'll review the details and reply by email as soon as we can.</p>
             <div class="thank-you-meta">
-              <span>Sent to info@toastcafe.com.au</span>
+              <span>Sent to our team inbox</span>
               <span>Prefer a direct call? 02 9280 2615</span>
             </div>
             <button class="btn" id="reset-enquiry-form" type="button">Send another enquiry</button>
@@ -967,14 +969,13 @@ if (enquiryForm && formStatus) {
     formStatus.textContent = "Sending enquiry...";
 
     try {
-      const formPayload = new URLSearchParams(new FormData(enquiryForm));
+      const formPayload = new FormData(enquiryForm);
       const response = await fetch(enquiryForm.action, {
         method: "POST",
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          "Accept": "application/json"
         },
-        body: formPayload.toString()
+        body: formPayload
       });
 
       let result = null;
@@ -984,7 +985,7 @@ if (enquiryForm && formStatus) {
         result = null;
       }
 
-      if (!response.ok || (result && result.success === "false")) {
+      if (!response.ok || (result && result.success === false)) {
         const message = result && (result.message || result.error);
         throw new Error(message || "Submission failed");
       }
@@ -997,12 +998,8 @@ if (enquiryForm && formStatus) {
         thankYouCard.classList.add("visible");
       }
     } catch (error) {
-      const message = String(error && error.message ? error.message : "");
-      if (message.toLowerCase().includes("activate") || message.toLowerCase().includes("confirm")) {
-        formStatus.textContent = "Please activate FormSubmit from the confirmation email sent to info@toastcafe.com.au first.";
-      } else {
-        formStatus.textContent = "Couldn't send just now. Please email info@toastcafe.com.au instead.";
-      }
+      const message = String(error && error.message ? error.message : "").trim();
+      formStatus.textContent = message || "Couldn't send just now. Please try again in a moment.";
     }
   });
 }

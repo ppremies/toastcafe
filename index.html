@@ -416,92 +416,33 @@ h2{
   text-transform:uppercase;
   color:var(--red);
 }
-.enquiry-form{
+.catering-panel{
   display:grid;
-  gap:12px;
+  gap:18px;
 }
-.field-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.form-field{
-  display:grid;
-  gap:6px;
-}
-.form-field label{
-  font-family:var(--ui-font);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  color:var(--charcoal);
-}
-.form-field input,
-.form-field select,
-.form-field textarea{
-  width:100%;
-  border:1.5px solid rgba(34,34,34,.14);
-  border-radius:16px;
-  background:#fff;
-  color:var(--charcoal);
-  padding:14px 16px;
-  font:inherit;
-}
-.form-field textarea{
-  min-height:110px;
-  resize:vertical;
-}
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus{
-  outline:none;
-  border-color:var(--red);
-  box-shadow:0 0 0 3px rgba(198,40,40,.12);
-}
-.form-actions{
-  display:grid;
-  gap:10px;
-  margin-top:6px;
-}
-.form-note,
-.form-status{
+.catering-panel h3{
   margin:0;
-  font-size:14px;
-  line-height:1.45;
-}
-.form-note{color:rgba(34,34,34,.72)}
-.form-status{
-  min-height:20px;
-  color:var(--red);
-}
-.form-status.success{color:#1f6b3b}
-.thank-you-card{
-  display:none;
-  gap:14px;
-  align-content:start;
-  padding:10px 2px 2px;
-}
-.thank-you-card.visible{display:grid}
-.thank-you-card h3{
-  margin:0;
-  font-size:clamp(28px,7vw,42px);
+  font-size:clamp(28px,6vw,44px);
   line-height:.96;
   letter-spacing:-.04em;
   text-transform:uppercase;
 }
-.thank-you-card p{
+.catering-panel p{
   margin:0;
   font-size:17px;
-  line-height:1.55;
+  line-height:1.6;
   color:rgba(34,34,34,.78);
 }
-.thank-you-meta{
+.catering-links{
+  display:grid;
+  gap:12px;
+}
+.catering-meta{
   display:grid;
   gap:8px;
   padding-top:8px;
 }
-.thank-you-meta span{
+.catering-meta span{
   font-family:var(--ui-font);
   font-size:12px;
   font-weight:700;
@@ -640,7 +581,6 @@ h2{
     gap:34px;
     align-items:start;
   }
-  .form-actions{grid-template-columns:1fr auto;align-items:center}
   .section.red{min-height:54vh}
   .quote-wrap{padding-left:34px}
   .quote{max-width:14ch}
@@ -808,84 +748,22 @@ h2{
         <div class="kicker">Toast catering</div>
         <h2>Sandwiches, boxes & office spreads.</h2>
         <p class="lead">For team breakfasts, corporate lunches, meetings and events. Simple to organise, fresh to eat, easy to say yes to.</p>
-        <a class="btn red" href="#catering-enquiry">Start enquiry -></a>
+        <a class="btn red" href="https://toastcafe.flexcateringhq.com/" target="_blank" rel="noreferrer">Order online -></a>
       </div>
       <div>
         <div class="catering-box" id="catering-enquiry">
-          <p class="form-intro">Catering enquiry form</p>
-          <form class="enquiry-form" id="enquiry-form" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="b2087cf8-ef63-41c1-97f9-737c7f804910">
-            <input type="hidden" name="subject" value="New Toast Catering Enquiry">
-            <input type="hidden" name="from_name" value="Toast Cafe Catering Website">
-            <input type="checkbox" name="botcheck" style="display:none">
-            <div class="field-grid">
-              <div class="form-field">
-                <label for="enquiry-name">Name</label>
-                <input id="enquiry-name" name="name" type="text" autocomplete="name" required>
-              </div>
-              <div class="form-field">
-                <label for="enquiry-email">Email</label>
-                <input id="enquiry-email" name="email" type="email" autocomplete="email" required>
-              </div>
+          <p class="form-intro">Catering options</p>
+          <div class="catering-panel">
+            <h3>Order through the existing catering system.</h3>
+            <p>We kept this page focused on brand and direction. For live catering orders, menus and operational details, use Toast's current ordering flow.</p>
+            <div class="catering-links">
+              <a class="btn red" href="https://toastcafe.flexcateringhq.com/" target="_blank" rel="noreferrer">Order online -></a>
+              <a class="btn" href="https://www.toastcafe.com.au/catering.php" target="_blank" rel="noreferrer">View catering page</a>
             </div>
-            <div class="field-grid">
-              <div class="form-field">
-                <label for="enquiry-company">Company</label>
-                <input id="enquiry-company" name="company" type="text" autocomplete="organization" placeholder="Company or team">
-              </div>
-              <div class="form-field">
-                <label for="enquiry-phone">Phone</label>
-                <input id="enquiry-phone" name="phone" type="tel" autocomplete="tel">
-              </div>
+            <div class="catering-meta">
+              <span>Phone orders: 02 9280 2615</span>
+              <span>Email: info@toastcafe.com.au</span>
             </div>
-            <div class="field-grid">
-              <div class="form-field">
-                <label for="enquiry-guests">Guest count</label>
-                <input id="enquiry-guests" name="guest_count" type="number" min="1" placeholder="e.g. 25" required>
-              </div>
-              <div class="form-field">
-                <label for="enquiry-time">Preferred delivery time</label>
-                <input id="enquiry-time" name="preferred_delivery_time" type="time">
-              </div>
-            </div>
-            <div class="field-grid">
-              <div class="form-field">
-                <label for="enquiry-date">Event date</label>
-                <input id="enquiry-date" name="event_date" type="date" required>
-              </div>
-              <div class="form-field">
-                <label for="enquiry-type">Catering type</label>
-                <select id="enquiry-type" name="catering_type" required>
-                  <option value="">Select one</option>
-                  <option>Breakfast</option>
-                  <option>Lunch</option>
-                  <option>Sandwiches</option>
-                  <option>Mixed catering</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-field">
-              <label for="enquiry-location">Delivery location</label>
-              <input id="enquiry-location" name="delivery_location" type="text" placeholder="Office, suburb or venue" required>
-            </div>
-            <div class="form-field">
-              <label for="enquiry-notes">What do you need?</label>
-              <textarea id="enquiry-notes" name="message" placeholder="Tell us timing, dietary needs and anything else that helps."></textarea>
-            </div>
-            <div class="form-actions">
-              <button class="btn red" type="submit">Send enquiry -&gt;</button>
-            </div>
-            <p class="form-status" id="form-status" aria-live="polite"></p>
-          </form>
-          <div class="thank-you-card" id="thank-you-card" aria-live="polite">
-            <p class="form-intro">Enquiry received</p>
-            <h3>Thanks.<br>We'll get back to you shortly.</h3>
-            <p>Your catering enquiry has been sent to our inbox. We'll review the details and reply by email as soon as we can.</p>
-            <div class="thank-you-meta">
-              <span>Sent to our team inbox</span>
-              <span>Prefer a direct call? 02 9280 2615</span>
-            </div>
-            <button class="btn" id="reset-enquiry-form" type="button">Send another enquiry</button>
           </div>
         </div>
         <div class="gallery">
@@ -936,10 +814,6 @@ const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const backToTop = document.querySelector(".back-to-top");
 const mobileLinks = document.querySelectorAll(".mobile-menu a");
-const enquiryForm = document.querySelector("#enquiry-form");
-const formStatus = document.querySelector("#form-status");
-const thankYouCard = document.querySelector("#thank-you-card");
-const resetEnquiryForm = document.querySelector("#reset-enquiry-form");
 
 if (menuToggle && mobileMenu) {
   menuToggle.addEventListener("click", () => {
@@ -961,57 +835,6 @@ window.addEventListener("scroll", () => {
   if (!backToTop) return;
   backToTop.classList.toggle("visible", window.scrollY > 420);
 });
-
-if (enquiryForm && formStatus) {
-  enquiryForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    formStatus.classList.remove("success");
-    formStatus.textContent = "Sending enquiry...";
-
-    try {
-      const formPayload = new FormData(enquiryForm);
-      const response = await fetch(enquiryForm.action, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json"
-        },
-        body: formPayload
-      });
-
-      let result = null;
-      try {
-        result = await response.json();
-      } catch (parseError) {
-        result = null;
-      }
-
-      if (!response.ok || (result && result.success === false)) {
-        const message = result && (result.message || result.error);
-        throw new Error(message || "Submission failed");
-      }
-
-      enquiryForm.reset();
-      formStatus.classList.add("success");
-      formStatus.textContent = "";
-      enquiryForm.style.display = "none";
-      if (thankYouCard) {
-        thankYouCard.classList.add("visible");
-      }
-    } catch (error) {
-      const message = String(error && error.message ? error.message : "").trim();
-      formStatus.textContent = message || "Couldn't send just now. Please try again in a moment.";
-    }
-  });
-}
-
-if (resetEnquiryForm && enquiryForm && thankYouCard && formStatus) {
-  resetEnquiryForm.addEventListener("click", () => {
-    thankYouCard.classList.remove("visible");
-    enquiryForm.style.display = "grid";
-    formStatus.classList.remove("success");
-    formStatus.textContent = "";
-  });
-}
 </script>
 </body>
 </html>
